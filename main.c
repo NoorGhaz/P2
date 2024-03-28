@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "testScanner.h"
+#include "parser.h"
 FILE* inputFile;
 int main(int argc, char* argv[]) {
 

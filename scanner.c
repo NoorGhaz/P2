@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <strings.h>
 #include "scanner.h"
-#include "testScanner.h"
+#include "parser.h"
 
 int fsaTable[12][12] = {
         {1001,0,1,3,10,8,6,5,-1,-2,-3,-4 },
@@ -73,6 +73,13 @@ struct token FADriver(int *lineNumber){
 
                 }
                 newToken.lineNumber = *lineNumber;
+
+                lookahead = fgetc(inputFile); //Get the next character so there would be no need to call next char in a loop(While loop in testScanner gone) 
+                if (lookahead == '\n') {//Skip over new line
+                        lookahead = fgetc(inputFile);
+                        //INCREMENT LINE NUMBER? COME BACK TO IT LATER
+                }
+
                 return newToken;
         } else if (nextState < 0) {
                 //Error states
